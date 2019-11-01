@@ -4,7 +4,7 @@ const logger = require('morgan');
 const path = require('path');
 const axios = require("axios");
 
-// let db = require("./models");
+let db = require("./models");
 
 let PORT = process.env.PORT || 5000;
 
@@ -36,3 +36,7 @@ let MONGODB_URI = "mongodb+srv://Dane123:Dane123@cluster0-zak6j.mongodb.net/test
 mongoose.connect(MONGODB_URI);
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+
+app.get("/", function (req, res) {
+    d
+})
