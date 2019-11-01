@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
 const axios = require("axios");
+const cheerio = require('cheerio');
 
 let db = require("./models");
 
@@ -51,7 +52,7 @@ app.get("/", function (req, res) {
 });
 
 app.get("/scraped", function (req, res) {
-    axios.get("https://news.ycombinator.com/").then(function (response) {
+    axios.get("http://www.artnews.com/category/news/").then(function (response) {
         let $ = cheerio.load(response.data);
         $("h2.entry-title").each(function (i, element) {
             let result = {};
@@ -69,4 +70,19 @@ app.get("/scraped", function (req, res) {
         });
     });
     res.send("Scrape Complete")
+});
+
+app.get("/saved", function (req, res) {
+    db.Article.find({
+            "saved": true
+        })
+        .populate("notes")
+        .then(function (result) {
+            var hbsObject = {
+                articles: result
+            };
+            res.render("saved", hbsObject);
+        }).catch(function (err) {
+            res.json(err)
+        });
 });
