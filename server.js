@@ -38,5 +38,14 @@ mongoose.connect(MONGODB_URI);
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 app.get("/", function (req, res) {
-    d
-})
+    db.Article.find({
+        'saved': false
+    }).then(function (result) {
+        let hbsObject = {
+            articles: result
+        };
+        res.render("index", hbsObject);
+    }).catch(function (err) {
+        res.json(err)
+    });
+});
