@@ -49,3 +49,24 @@ app.get("/", function (req, res) {
         res.json(err)
     });
 });
+
+app.get("/scraped", function (req, res) {
+    axios.get("https://news.ycombinator.com/").then(function (response) {
+        let $ = cheerio.load(response.data);
+        $("h2.entry-title").each(function (i, element) {
+            let result = {};
+            result.title = $(element).text();
+            result.link = $(element).children("a").attr("href");
+            result.summary = $(element).siblings('.entry-summary').text().trim();
+
+            db.Article.create(result)
+                .then(function (dbArticle) {
+                    console.log(dbArticle);
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
+        });
+    });
+    res.send("Scrape Complete")
+});
