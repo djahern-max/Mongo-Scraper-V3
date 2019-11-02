@@ -24,14 +24,17 @@ $("#scrape").on("click", function () {
 
 //Delete from Saved
 $('.delete').on('click', function () {
+    console.log('test');
     let thisId = $(this).attr('data-id');
     $.ajax({
         method: "POST",
-        url: '/delete/' + thisID
+        url: '/delete/' + thisId
     }).then(function (data) {
         window.location = '/'
     });
 });
+
+//To Save a note
 
 $(".save-note").on("click", function () {
 
@@ -50,13 +53,16 @@ $(".save-note").on("click", function () {
     });
 
 });
-$('.deleteNote').on('click', function () {
-    let thisId = $(this).attr('data-note-id');
+
+//To Delete a note
+
+$(".deleteNote").on("click", function () {
+    var thisId = $(this).attr("data-note-id");
     $.ajax({
         method: "POST",
-        url: '/deleteNote' + thisId,
+        url: "/deleteNote/" + thisId,
     }).then(function (data) {
         console.log(data);
-        window.location = '/saved'
-    });
-});
+        window.location = "/saved"
+    })
+})
