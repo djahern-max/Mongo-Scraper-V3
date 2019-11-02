@@ -37,16 +37,18 @@ $('.delete').on('click', function () {
 //To Save a note
 
 $(".save-note").on("click", function () {
-
     var thisId = $(this).attr("data-id");
     $.ajax({
         method: "POST",
         url: "/articles/" + thisId,
         data: {
             body: $("#noteText" + thisId).val()
+            //   body: $("#noteText").val()
         }
     }).then(function (data) {
+        // Log the response
         console.log(data);
+        // Empty the notes section
         $("#noteText" + thisId).val("");
         $(".modalNote").modal("hide");
         window.location = "/saved"
