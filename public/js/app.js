@@ -30,3 +30,30 @@ $('.delete').on('click', function () {
         window.location = '/'
     });
 });
+
+$('.save-note').on("click", function () {
+    let thisId = $(this).attr('data-id');
+    $.ajax({
+        method: "POST",
+        url: '/articles/' + thisId,
+        data: {
+            body: $('#noteText' + thisID).val()
+        }
+    }).then(function (data) {
+        console.log(data);
+        $('noteText' + thisID).val('');
+        $('.modalNote').modal('hide');
+        window.location = '/saved'
+    });
+});
+
+$('.deleteNote').on('click', function () {
+    let thisId = $(this).attr('data-note-id');
+    $.ajax({
+        method: "POST",
+        url: '/deleteNote' + thisId,
+    }).then(function (data) {
+        console.log(data);
+        window.location = '/saved'
+    });
+});
