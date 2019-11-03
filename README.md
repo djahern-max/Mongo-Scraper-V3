@@ -1,3 +1,3 @@
 ## Art New Scraper
 
-![](public/images/newspaper.jpg)
+![](public/images/newspaper.png)
