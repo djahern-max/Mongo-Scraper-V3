@@ -13,7 +13,7 @@ This app allows you to "scrape" news articles from Art News, which has been arou
 - Handlebars.js
 - MongoDB
 - Mongoose
-- npm packages
+- npm packages:
    -axios
    -cheerio
    -express
