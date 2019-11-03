@@ -1,7 +1,8 @@
 .jumbotron {
-    background-image: url("../images/newspaper.png");
+    background-image: url("../images/newspaper.jpg");
     background-size: cover;
-    height: 25rem;
+    height: 22rem;
+    text-align: center;
 }
 
 .container {
@@ -9,8 +10,8 @@
 }
 
 h1 {
-   font-size: 5rem !important;
-   color: whitesmoke;
+    font-size: 5rem !important;
+    color: whitesmoke;
 }
 
 .lead {
@@ -33,3 +34,6 @@ h1 {
     margin-bottom: 2%;
 }
 
+.opacity {
+    opacity: .7;
+}

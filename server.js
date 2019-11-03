@@ -1,21 +1,21 @@
 // Dependencies
-var express = require('express');
-var logger = require('morgan');
-var mongoose = require('mongoose');
-var path = require('path');
+let express = require('express');
+let logger = require('morgan');
+let mongoose = require('mongoose');
+let path = require('path');
 
 // Scraping tools
-var axios = require('axios');
-var cheerio = require('cheerio');
+let axios = require('axios');
+let cheerio = require('cheerio');
 
 // Requiring all models
-var db = require('./models');
+let db = require('./models');
 
 // Initializing the port
-var PORT = process.env.PORT || 3000;
+let PORT = process.env.PORT || 3000;
 
 // Initializing Express
-var app = express();
+let app = express();
 
 // Middleware
 // Use morgan logger for logging requests
@@ -29,7 +29,7 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // Using Handlebars
-var exphbs = require('express-handlebars');
+let exphbs = require('express-handlebars');
 app.engine(
   'handlebars',
   exphbs({
@@ -41,9 +41,9 @@ app.set('view engine', 'handlebars');
 
 // Connecting to the Mongo DB
 // mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
-// var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/mongoartnews';
+// let MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/mongoartnews';
 
-var MONGODB_URI =
+let MONGODB_URI =
   'mongodb+srv://Dane123:Dane123@cluster0-zak6j.mongodb.net/test?retryWrites=true&w=majority';
 
 mongoose.connect(MONGODB_URI);
@@ -58,9 +58,9 @@ app.get('/', function (req, res) {
       saved: false
     })
     .then(function (result) {
-      // This variable allows us to use handlebars by passing the results
+      // This letiable allows us to use handlebars by passing the results
       // from the database as the value in an object
-      var hbsObject = {
+      let hbsObject = {
         articles: result
       };
       res.render('index', hbsObject);
@@ -73,10 +73,10 @@ app.get('/', function (req, res) {
 // Scrapes the artnews website for the article data
 app.get('/scraped', function (req, res) {
   axios.get('http://www.artnews.com/category/news/').then(function (response) {
-    var $ = cheerio.load(response.data);
+    let $ = cheerio.load(response.data);
 
     $('h2.entry-title').each(function (i, element) {
-      var result = {};
+      let result = {};
 
       result.title = $(element).text();
 
@@ -108,7 +108,7 @@ app.get('/saved', function (req, res) {
     })
     .populate('notes')
     .then(function (result) {
-      var hbsObject = {
+      let hbsObject = {
         articles: result
       };
       res.render('saved', hbsObject);
