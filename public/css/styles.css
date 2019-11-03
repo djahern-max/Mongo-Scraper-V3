@@ -9,8 +9,8 @@
 }
 
 h1 {
-    font-size: 5rem !important;
-    color: whitesmoke;
+   font-size: 5rem !important;
+   color: whitesmoke;
 }
 
 .lead {
@@ -32,3 +32,4 @@ h1 {
 .deleteNote {
     margin-bottom: 2%;
 }
+
