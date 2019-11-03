@@ -3,6 +3,7 @@ let express = require('express');
 let logger = require('morgan');
 let mongoose = require('mongoose');
 let path = require('path');
+require("dotenv").config();
 
 // Scraping tools
 let axios = require('axios');
@@ -43,8 +44,7 @@ app.set('view engine', 'handlebars');
 // mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
 // let MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/mongoartnews';
 
-let MONGODB_URI =
-  'mongodb+srv://Dane123:Dane123@cluster0-zak6j.mongodb.net/test?retryWrites=true&w=majority';
+let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
 mongoose.connect(MONGODB_URI);
 
